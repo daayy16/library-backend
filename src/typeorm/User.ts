@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Book } from './Book';
+import { Loan } from './Loan';
 
 @Entity('user')
 @Unique(['email'])
@@ -18,13 +20,13 @@ export class User {
     })
     email: string;
 
-    @Column({
-        nullable: false,
-        default: ''
-    })
-    cellphone: string;
-
     @Column()
     password: string
+
+    @OneToMany(() => Book, (book) => book.owner, { nullable: true})
+    books: Book[];
+
+    @OneToMany(() => Loan, (loan) => loan.borrower, { nullable: true})
+    loans: Loan[]
 
 }

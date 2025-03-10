@@ -16,14 +16,11 @@ export class AuthService {
         if(userDB){
             const matched = comparePassword(password, userDB.password)
             if(matched) {
-                console.log('User Validation Sucess')
                 return userDB;
             } else {
-                console.log('Password do not match')
                 return null
             }
         }
-        console.log('User Validation Failed')
         return null
     }
 

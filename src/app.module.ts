@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import entities from './typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { getDatabaseConfig } from './config/database.config';
+import { BooksModule } from './books/books.module';
+import { LoansModule } from './loans/loans.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { getDatabaseConfig } from './config/database.config';
     }),
     UsersModule,
     AuthModule,
+    BooksModule,
+    LoansModule,
   ],
   controllers: [AppController],
   providers: [AppService],
