@@ -12,7 +12,7 @@ export class CreateBookDto {
 
     @IsNotEmpty()
     @IsString()
-    pathBookSaved: string;
+    nameFile: string;
 
     @IsNotEmpty()
     @IsString()

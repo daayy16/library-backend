@@ -17,9 +17,9 @@ export class Book {
         author: string;
 
         @Column({
-            name: 'path_book'
+            name: 'name_file'
         })
-        pathBookSaved: string;
+        nameFile: string;
 
         @ManyToOne(()  => User, (user) => user.books)
         owner: User;

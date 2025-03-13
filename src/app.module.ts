@@ -9,6 +9,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { getDatabaseConfig } from './config/database.config';
 import { BooksModule } from './books/books.module';
 import { LoansModule } from './loans/loans.module';
+import { UploadModule } from './upload/upload.module';
+import { SupabaseService } from './supabase/supabase.service';
 
 @Module({
   imports: [
@@ -24,8 +26,9 @@ import { LoansModule } from './loans/loans.module';
     AuthModule,
     BooksModule,
     LoansModule,
+    UploadModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SupabaseService],
 })
 export class AppModule {}
