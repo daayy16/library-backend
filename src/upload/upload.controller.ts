@@ -1,10 +1,10 @@
-import { Controller, Post, UploadedFile, UseInterceptors, Get, Query } from '@nestjs/common';
+import { Controller, Post, UploadedFile, UseInterceptors, Get, Query, Inject } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UploadService } from './upload.service';
 
 @Controller('upload')
 export class UploadController {
-  constructor(private uploadService: UploadService) {}
+  constructor(@Inject('UPLOAD_SERVICE') private readonly uploadService: UploadService) {}
 
   @Post()
   @UseInterceptors(FileInterceptor('file'))

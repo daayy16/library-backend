@@ -5,6 +5,9 @@ import { SupabaseService } from 'src/supabase/supabase.service';
 
 @Module({
   controllers: [UploadController],
-  providers: [UploadService, SupabaseService],
+  providers: [{
+    provide: 'UPLOAD_SERVICE',
+    useClass: UploadService
+  }, SupabaseService],
 })
-export class UploadModule {}
+export class UploadModule { }

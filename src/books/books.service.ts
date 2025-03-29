@@ -5,6 +5,7 @@ import { Book } from 'src/typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UsersService } from 'src/users/users.service';
+import { UploadService } from 'src/upload/upload.service';
 
 @Injectable()
 export class BooksService {
@@ -13,6 +14,7 @@ export class BooksService {
       private readonly bookRepository: Repository<Book>,
       @Inject('USERS_SERVICE')
               private readonly userService: UsersService,
+      @Inject('UPLOAD_SERVICE') private readonly uploadService: UploadService
     ) { }
   async create(dto: CreateBookDto) {
     const owner = await this.userService.getUserByEmail(dto.userEmail)
