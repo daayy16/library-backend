@@ -1,4 +1,4 @@
-import { Controller, Request, Post, UseGuards, Inject, Get } from '@nestjs/common';
+import { Controller, Request, Post, UseGuards, Inject, Get, Body, Res } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from 'src/auth/auth.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
@@ -14,9 +14,14 @@ export class AuthController {
         return this.authService.login(req.user);
     }
 
-    @UseGuards(JwtAuthGuard)
-    @Get('profile')
-    getProfile(@Request() req) {
-        return req.user;
+
+    @Post('forgot-password')
+    async forgetPassword(@Res() response, @Body() body) {
+        const mail = await this.authService.forgetPassword(body.email);
+        
+        return response.status(200).json({
+            message: 'email enviado',
+            mail
+        })
     }
 }
